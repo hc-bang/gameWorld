@@ -118,6 +118,12 @@ class Shooter {
         }
     }
 
+    // GameManager의 restartGame()에서 호출 — reset() 후 UI 갱신
+    restart() {
+        this.reset();
+        this.updateUI();
+    }
+
     handleInput(e) {
         if (this.paused || this.gameOver) return;
     }
@@ -238,8 +244,11 @@ class Shooter {
                 const targetX = this.formationX + e.relX;
                 const targetY = this.formationY + e.relY;
                 e.y += 5 * (deltaTime / 16);
+                // X 위치도 대형 좌표로 부드럽게 보정
+                e.x += (targetX - e.x) * 0.08;
                 if (e.y >= targetY) {
                     e.state = 'formation';
+                    e.x = targetX; // 정확한 X 위치로 스냅
                 }
             }
         });

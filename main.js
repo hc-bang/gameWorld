@@ -274,8 +274,8 @@ class GameManager {
             helpHtml = `
                 <div><span class="key-tag">←</span> <span class="key-tag">→</span> 왼쪽/오른쪽 이동</div>
                 <div><span class="key-tag">↑</span> 블록 회전</div>
-                <div><span class="key-tag">↓</span> 소프트 드롭 (천천히 하강)</div>
-                <div><span class="key-tag">Space</span> 하드 드롭 (즉시 하강)</div>
+                <div><span class="key-tag">↓</span> 천천히 하강</div>
+                <div><span class="key-tag">스페이스</span> 즉시 하강</div>
             `;
         } else if (this.currentGameType === 'snake') {
             helpHtml = `
@@ -288,10 +288,10 @@ class GameManager {
         } else if (this.currentGameType === 'shooter') {
             helpHtml = `
                 <div><span class="key-tag">←</span> <span class="key-tag">→</span> 기체 이동</div>
-                <div><span class="key-tag">Space</span> 미사일 발사 (연사 가능)</div>
+                <div><span class="key-tag">스페이스</span> 미사일 발사 (연사 가능)</div>
                 <div style="margin-top:20px; font-size:0.9rem; opacity:0.8;">
                     <p>• 갤러그 스타일의 대형을 이룬 적들이 공격해옵니다.</p>
-                    <p>• 적의 공격을 피하고 모든 적을 섬멸하세요 (3 HP 보유).</p>
+                    <p>• 적의 공격을 피하고 모든 적을 섬멸하세요 (생명 3개 보유).</p>
                 </div>
             `;
         }

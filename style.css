@@ -356,6 +356,12 @@ canvas.game-canvas {
     margin-bottom: 20px;
 }
 
+/* 게임 오버 화면 — 빨간 네온 강조 */
+.neon-text.critical {
+    color: var(--neon-red);
+    text-shadow: 0 0 20px var(--neon-red), 0 0 40px var(--neon-red);
+}
+
 .neon-button {
     background: transparent;
     border: 2px solid var(--neon-cyan);

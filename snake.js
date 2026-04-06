@@ -12,18 +12,16 @@ class Snake {
         this.cols = Math.floor(this.canvas.width / this.gridSize);
         this.rows = Math.floor(this.canvas.height / this.gridSize);
 
-        this.reset();
-        this.particles = [];
-        this.gameLoopId = null;
-        this.lastTime = 0;
-        this.moveInterval = 150;
-        this.moveCounter = 0;
-
         this.colors = {
             head: '#00f3ff',
             body: '#0055ff',
             food: '#ff0044'
         };
+
+        // reset()에서 모든 상태를 초기화하므로 생성자에서는 reset() 한 번만 호출
+        this.gameLoopId = null;
+        this.lastTime = 0;
+        this.reset();
 
         this.init();
     }
@@ -45,6 +43,11 @@ class Snake {
         this.countdown = 0;
         this.isCountingDown = false;
         this.countdownTimer = 0;
+
+        // 재시작 시 초기값으로 완전히 복원 (이전 판 상태 잔류 방지)
+        this.moveInterval = 150;  // 이전 레벨의 가속 속도가 유지되는 버그 수정
+        this.moveCounter = 0;     // 남은 카운터 값으로 인한 즉시 이동 버그 수정
+        this.particles = [];      // 이전 파티클 잔재 제거
     }
 
     init() {
@@ -55,9 +58,11 @@ class Snake {
         this.isCountingDown = true;
         this.countdown = 3;
         this.countdownTimer = 0;
-        this.paused = true; // Still paused for movement
+        // paused=false 로 설정해야 update()가 실행됨
+        // 이동 잠금은 isCountingDown 플래그가 담당
+        this.paused = false;
         this.lastTime = performance.now();
-        if (this.sound.tick) this.sound.tick(); // Initial tick
+        if (this.sound.tick) this.sound.tick(); // 첫 번째 틱 사운드
     }
 
     stop() {
@@ -66,6 +71,12 @@ class Snake {
             cancelAnimationFrame(this.gameLoopId);
             this.gameLoopId = null;
         }
+    }
+
+    // GameManager의 restartGame()에서 호출 — reset() 후 UI 갱신
+    restart() {
+        this.reset();
+        this.updateUI();
     }
 
     generateFood() {
@@ -98,6 +109,9 @@ class Snake {
     update(deltaTime) {
         if (this.gameOver) return;
 
+        // 카운트다운 중에도 외부 일시정지(도움말 모달 등)를 우선 적용
+        if (this.paused) return;
+
         if (this.isCountingDown) {
             this.countdownTimer += deltaTime;
             if (this.countdownTimer >= 1000) {
@@ -109,14 +123,12 @@ class Snake {
                     if (this.sound.go) this.sound.go();
                 } else {
                     this.isCountingDown = false;
-                    this.paused = false;
                 }
             }
             return;
         }
 
-        if (this.paused) return;
-
+        // 카운트다운이 끝난 후 이동 루프
         this.moveCounter += deltaTime;
         if (this.moveCounter >= this.moveInterval) {
             this.moveCounter = 0;
