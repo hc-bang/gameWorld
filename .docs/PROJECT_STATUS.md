@@ -116,4 +116,4 @@ gameWorld/
 ## 🕐 최종 업데이트
 
 - **일시**: 2026-04-07
-- **작업 내용**: 에이전트를 통한 프로젝트 현행화 수행 (.gitignore 생성, 80포트 .scripts 스크립트 작성, 트리 업데이트, PROJECT_CODE/DESIGN 자산 문서 초기화).
+- **작업 내용**: 프로젝트 현행화 수행 (스킬 `project-sync` 기준). `.gitignore` 실질 규칙 추가, `run-local.ps1` 8080 폴백·한글화·에러핸들링 개선, `README.md` 실행 안내 테이블 동기화, `PROJECT_CODE.md`·`PROJECT_DESIGN.md` 70% 식별 원칙에 따라 상세 문서화 완료. 코드 자체는 이상 없음(데드코드·중복 없음, 기존 기술 부채 항목만 유지).
