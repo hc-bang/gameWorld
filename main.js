@@ -94,6 +94,41 @@ class ParticleSystem {
     }
 }
 
+class ParticleHelper {
+    static create(particles, x, y, color, count, speed, drainRate) {
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * speed,
+                vy: (Math.random() - 0.5) * speed,
+                life: 1.0,
+                color: color,
+                drain: drainRate
+            });
+        }
+    }
+    static update(particles, deltaTime) {
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.life -= deltaTime / p.drain;
+            if (p.life <= 0) particles.splice(i, 1);
+        }
+    }
+    static draw(ctx, particles) {
+        particles.forEach(p => {
+            ctx.globalAlpha = p.life;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        ctx.globalAlpha = 1.0;
+    }
+}
+
 class GameManager {
     constructor() {
         this.sound = new SoundManager();

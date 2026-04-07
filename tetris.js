@@ -282,16 +282,7 @@ class Tetris {
     }
 
     createParticles(x, y, color) {
-        for (let i = 0; i < 8; i++) {
-            this.particles.push({
-                x: x + this.gridSize / 2,
-                y: y + this.gridSize / 2,
-                vx: (Math.random() - 0.5) * 10,
-                vy: (Math.random() - 0.5) * 10,
-                life: 1.0,
-                color: color
-            });
-        }
+        ParticleHelper.create(this.particles, x + this.gridSize / 2, y + this.gridSize / 2, color, 8, 10, 500);
     }
 
     updateUI() {
@@ -387,26 +378,11 @@ class Tetris {
     }
 
     updateParticles(deltaTime) {
-        for (let i = this.particles.length - 1; i >= 0; i--) {
-            const p = this.particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-            p.life -= deltaTime / 500;
-            if (p.life <= 0) {
-                this.particles.splice(i, 1);
-            }
-        }
+        ParticleHelper.update(this.particles, deltaTime);
     }
 
     drawParticles() {
-        this.particles.forEach(p => {
-            this.ctx.globalAlpha = p.life;
-            this.ctx.fillStyle = p.color;
-            this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-            this.ctx.fill();
-        });
-        this.ctx.globalAlpha = 1.0;
+        ParticleHelper.draw(this.ctx, this.particles);
     }
 
     render(time = 0) {

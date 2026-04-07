@@ -28,6 +28,13 @@
 * **역할:** #particle-canvas 레이어 상에서 50개의 객체를 `hsla()` 색상과 함께 애니메이션하는 백그라운드 엔진.
 * **동작 방식:** 초기화 시 랜덤 `vx, vy` (속도 벡터)를 부여받은 파티클이 화면 밖을 벗어나면 반대편 좌표로 워프하는 무한 루프.
 
+#### `ParticleHelper` (in `main.js`)
+* **역할:** 내부 미니게임(`Tetris`, `Snake`, `Shooter`)들에서 개별 구현되던 파티클 이펙트 로직을 통합한 공통 유틸리티 클래스.
+* **주요 정적(Static) 메서드 서명:**
+  - `create(particles: array, x: number, y: number, color: string, count: number, speed: number, drainRate: number)`: 파티클 생성 (소멸률 `drainRate` 매개변수로 유연성 확보)
+  - `update(particles: array, deltaTime: number)`: 수명(`life`) 감소 및 이동 벡터 동기화 연산
+  - `draw(ctx: object, particles: array)`: 캔버스 컨텍스트(`ctx`)를 주입받아 원형(Arc) 렌더링
+
 ### 3. 미니 게임 아키텍처 제약사항
 * 향후 추가/수정될 모든 게임 모드(`Tetris`, `Snake`, `Shooter`)는 공통적으로 아래의 시그니처 뼈대를 상속(혹은 매칭)하여 구성해야 함.
 * **생성자:** `constructor(canvasId: string, soundManager: obj, onGameOver: function(score))`
