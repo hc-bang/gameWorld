@@ -179,17 +179,19 @@ canvas.game-canvas {
 
 /* UI Overlays */
 .ui-panel {
+    position: absolute;
+    left: calc(100% + 40px); /* 캔버스 우측으로 밀어냄 */
+    top: 0;
+    bottom: 0; /* 캔버스의 높이와 100% 동일한 공간 확보 */
     display: flex;
     flex-direction: column;
     gap: 20px;
     min-width: 180px;
 }
 
-#tetris-view .ui-panel, #snake-view .ui-panel, #shooter-view .ui-panel {
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
+.ui-panel .help-btn {
+    margin-top: auto; /* 여유 공간을 모두 위로 밀어내어 밑바닥에 안착시킴 */
+    margin-bottom: 0; /* 캔버스와 정확히 밑선 맞춤 */
 }
 
 #tetris-next-panel {
