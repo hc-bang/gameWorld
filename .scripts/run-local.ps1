@@ -9,7 +9,7 @@
 
 # Python 실행 명령어 탐색: 실제로 버전 정보를 반환하는 명령만 신뢰
 function Find-Python {
-    foreach ($cmd in @("py", "python3", "python")) {
+    foreach ($cmd in @("python", "python3", "py")) {
         if (Get-Command $cmd -ErrorAction SilentlyContinue) {
             $result = & $cmd --version 2>&1
             # 실제 Python 버전 정보가 출력되는지 확인 (MS Store 앨리어스는 실행 자체가 실패)
@@ -49,10 +49,10 @@ function Start-Server($port) {
     return $LASTEXITCODE
 }
 
-# 포트 80으로 먼저 시도 (관리자 권한 필요), 실패 시 8080 폴백
+# 포트 80 서버 실행
 $exitCode = Start-Server 80
 if ($exitCode -ne 0) {
     Write-Host ""
-    Write-Host "⚠️  포트 80 실행 실패 (관리자 권한 필요). 포트 8080으로 재시도합니다..." -ForegroundColor Yellow
-    Start-Server 8080
+    Write-Host "❌ 포트 80 실행 실패. (포트가 이미 사용 중이거나 관리자 권한이 필요할 수 있습니다.)" -ForegroundColor Red
+    exit 1
 }

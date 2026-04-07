@@ -2,28 +2,5 @@
 # 🚫 게임 월드 — Git 제외 목록 (.gitignore)
 # ────────────────────────────────────────
 
-# Python 로컬 서버 캐시
-__pycache__/
-*.py[cod]
-*.pyo
-
-# OS 메타파일
-.DS_Store
-Thumbs.db
-desktop.ini
-ehthumbs.db
-
-# 에디터 / IDE 설정
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# 로그 파일
-*.log
-
-# 임시 파일
-*.tmp
-*.bak
-*.orig
+# 시스템 내에 무시 처리 대상인 실존 파일 및 폴더가 없습니다.
+# (70% 식별 및 최소주의 - 미래 발생 가능성만으로 선제적 템플릿 작성을 금지하는 에이전트 룰에 의거하여 모두 정리됨)
