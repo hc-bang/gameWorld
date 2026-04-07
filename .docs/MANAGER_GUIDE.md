@@ -1,6 +1,6 @@
 # 🔧 관리자 가이드 (Developer Guide)
 
-> 서연 게임 월드 프로젝트의 개발 환경 구성, 로컬 실행, 배포 절차를 안내합니다.
+> 게임 월드 프로젝트의 개발 환경 구성, 로컬 실행, 배포 절차를 안내합니다.
 
 ---
 
@@ -8,7 +8,7 @@
 
 | 항목 | 내용 |
 |------|------|
-| **프로젝트명** | 서연 게임 월드 |
+| **프로젝트명** | 게임 월드 |
 | **기술 스택** | HTML5 / Vanilla CSS3 / Vanilla JavaScript |
 | **배포 방식** | GitHub Pages (정적 호스팅) |
 | **로컬 서버** | Python HTTP Server |
@@ -43,19 +43,15 @@ cd gameWorld
 
 별도 빌드 과정 없이 정적 파일만으로 동작합니다.
 
-```bash
-# 포트 80 (관리자 권한 필요할 수 있음)
-python -m http.server 80
-
-# 또는 일반 포트
-python -m http.server 8080
+```powershell
+# 편의 스크립트 실행 (80번 포트 웹 서버 구동)
+.\.scripts\run-local.ps1
 ```
 
 ### 3-3. 브라우저 접속
 
 ```
 http://localhost        # 포트 80 사용 시
-http://localhost:8080   # 포트 8080 사용 시
 ```
 
 > **주의**: `file://` 프로토콜로 직접 `index.html`을 열면 Web Audio API 등 일부 기능이 제한될 수 있습니다. 반드시 HTTP 서버를 통해 접속하세요.
@@ -85,6 +81,8 @@ gameWorld/
 │
 ├── shooter.js         # 갤러그 슈팅 게임 클래스
 │   └── Shooter 클래스 # 적 대형·다이브 AI·총알 충돌·별 배경
+│
+├── .scripts/          # 프로젝트 구동 편의 스크립트 폴더
 │
 └── assets/
     └── bg.png         # 배경 이미지 (CSS background-image로 참조)

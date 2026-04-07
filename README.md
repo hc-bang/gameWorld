@@ -41,6 +41,7 @@ gameWorld/
 ├── tetris.js        # 테트리스 게임 로직
 ├── snake.js         # 스네이크 게임 로직
 ├── shooter.js       # 갤러그(슈터) 게임 로직
+├── .scripts/        # 로컬 서버 구동 등을 지원하는 편의 스크립트 모음
 ├── assets/
 │   └── bg.png       # 배경 이미지
 └── .agents/         # Antigravity AI 에이전트 설정
@@ -67,12 +68,9 @@ gameWorld/
 
 별도의 빌드 도구 없이 정적 웹 서버만 있으면 실행할 수 있습니다.
 
-```bash
-# Python 내장 서버 사용 (포트 80)
-python -m http.server 80
-
-# 또는 포트 8080
-python -m http.server 8080
+```powershell
+# 편의 스크립트를 통한 80 포트 실행 (가상환경 방어 로직 포함)
+.\.scripts\run-local.ps1
 ```
 
 브라우저에서 `http://localhost` 또는 `http://localhost:8080` 으로 접속합니다.

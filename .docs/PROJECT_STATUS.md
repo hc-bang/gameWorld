@@ -6,7 +6,7 @@
 
 ## 🎯 프로젝트 목표
 
-**서연 게임 월드** — 클래식 아케이드 게임 3종 (테트리스·스네이크·갤러그)을 순수 HTML/CSS/JS로 구현한 정적 웹 게임 포털.  
+**게임 월드** — 클래식 아케이드 게임 3종 (테트리스·스네이크·갤러그)을 순수 HTML/CSS/JS로 구현한 정적 웹 게임 포털.  
 GitHub Pages로 호스팅되며, 외부 프레임워크·빌드 도구 없이 동작한다.
 
 ---
@@ -21,6 +21,8 @@ gameWorld/
 ├── tetris.js      ← Tetris 클래스 (10×20 그리드, 7종 블록, 고스트)
 ├── snake.js       ← Snake 클래스 (그리드 이동, 카운트다운, 먹이)
 ├── shooter.js     ← Shooter 클래스 (적 대형, 다이브 AI, HP 시스템)
+├── .scripts/      ← 구동 및 편의 스크립트 모음
+├── .gitignore     ← 불필요한 메타 파일 필터 속성
 └── assets/bg.png  ← 배경 이미지
 ```
 
@@ -83,6 +85,8 @@ gameWorld/
 | README.md | ✅ 완료 | `/README.md` |
 | 관리자 가이드 | ✅ 완료 | `/.docs/MANAGER_GUIDE.md` |
 | 사용자 가이드 | ✅ 완료 | `/.docs/USER_GUIDE.md` |
+| 시스템 규격 | ✅ 완료 | `/.docs/PROJECT_CODE.md` |
+| 디자인 자산 | ✅ 완료 | `/.docs/PROJECT_DESIGN.md` |
 | 프로젝트 상태 | ✅ 완료 | `/.docs/PROJECT_STATUS.md` |
 
 ---
@@ -111,5 +115,5 @@ gameWorld/
 
 ## 🕐 최종 업데이트
 
-- **일시**: 2026-04-06
-- **작업 내용**: 게임별 기능 오류 점검 및 3건 버그 수정 (Snake·Shooter restart() 누락, .neon-text.critical CSS 미정의, 갤러그 적 복귀 X좌표 미보정)
+- **일시**: 2026-04-07
+- **작업 내용**: 에이전트를 통한 프로젝트 현행화 수행 (.gitignore 생성, 80포트 .scripts 스크립트 작성, 트리 업데이트, PROJECT_CODE/DESIGN 자산 문서 초기화).
